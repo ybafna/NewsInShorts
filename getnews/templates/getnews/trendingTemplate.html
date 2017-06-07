@@ -1,0 +1,399 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<!--
+Template Name: Newserific
+Author: <a href="http://www.os-templates.com/">OS Templates</a>
+Author URI: http://www.os-templates.com/
+Licence: Free to use under our free template licence terms
+Licence URI: http://www.os-templates.com/template-terms
+-->
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<title>News In Shorts</title>
+    {% load static %}
+
+ <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+<link rel="stylesheet" type="text/css"
+      href="https://fonts.googleapis.com/css?family=Tangerine|Satisfy">
+
+<link rel="stylesheet" href="{%  static 'getnews/layout.css' %}" type="text/css" />
+ <link rel="stylesheet" href="{%  static 'getnews/style1.css' %}" type="text/css">
+ <style>
+        body {font: normal 0.9em Arial;color:#222;}
+        header {display:block; font-size:1.2em;margin-bottom:100px;}
+        header a, header span {
+            display: inline-block;
+            padding: 4px 8px;
+            margin-right: 10px;
+            border: 2px solid #000;
+            background: #DDD;
+            color: #000;
+            text-decoration: none;
+            text-align: center;
+            height: 20px;
+        }
+        p{
+            margin:0;
+        }
+        header span {background:white;}
+
+      <!--  #content1{
+          text-align: justify;
+          width:800px;
+          height:200px;
+          background-color: white;
+          text-align: left;
+          letter-spacing: 1px;
+          font-family: Arial;
+          font-size: 15px;
+          color:black;
+          margin: 0 auto;
+          overflow-y: scroll;
+
+        }-->
+
+
+  body {
+      position: relative;
+  }
+ p{
+     padding:0;
+     margin:0;
+ }
+  </style>
+</head>
+<body style="background-image: url('{% static "getnews/images/images.jpg"%}' );" >
+<div class="col11 wrapper">
+<div class="fl_left" >
+      <a href="{% url 'index' %}"><h6 style="font-family: 'Satisfy'">NewsInShorts</h6></a>
+      <h4>All News at One Place</h4>
+    </div>
+    <div id="topbar">
+    <div id="topnav">
+      <ul>
+        <li><a href="{% url 'trending' %}#general" class=active">General</a></li>
+        <li><a href="{% url 'trending' %}#business">Business</a></li>
+        <li><a href="{% url 'trending' %}#sports">Sports</a></li>
+          <li><a href="{% url 'trending' %}#entertainment">Entertainment</a></li>
+          <li><a href="{% url 'trending' %}#science-and-nature">Science & Nature</a></li>
+          <li><a href="{% url 'trending' %}#technology">Technology</a></li>
+
+      </ul>
+        <div class="fl_right">
+         <div id="search">
+      <form action="{% url 'search' %}" method="post">
+             {% csrf_token %}
+          <input type="text" value="Search News here&hellip;" name="keyword"  onfocus="this.value=(this.value=='Search News here&hellip;')? '' : this.value ;" />
+          <input type="submit" name="go" id="submit1" value="Search" />
+
+      </form>
+    </div></div>
+    </div>
+      <br class="clear" />
+  </div>
+
+</div>
+
+<!--<nav class="navbar navbar-inverse navbar-fixed-top">
+  <div class="container-fluid">
+    <div class="navbar-header">
+        <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#myNavbar">
+          <span class="icon-bar"></span>
+          <span class="icon-bar"></span>
+          <span class="icon-bar"></span>
+      </button>
+      <a class="navbar-brand" href="#">WebSiteName</a>
+    </div>
+    <div>
+      <div class="collapse navbar-collapse" id="myNavbar">
+        <ul class="nav navbar-nav">
+          <li><a href="#section1">Section 1</a></li>
+          <li><a href="#section2">Section 2</a></li>
+          <li><a href="#section3">Section 3</a></li>
+          <li class="dropdown"><a class="dropdown-toggle" data-toggle="dropdown" href="#">Section 4 <span class="caret"></span></a>
+            <ul class="dropdown-menu">
+              <li><a href="#section41">Section 4-1</a></li>
+              <li><a href="#section42">Section 4-2</a></li>
+            </ul>
+          </li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</nav>
+
+<div id="section1" class="container-fluid">
+  <h1>Section 1</h1>
+  <p>Try to scroll this section and look at the navigation bar while scrolling! Try to scroll this section and look at the navigation bar while scrolling!</p>
+  <p>Try to scroll this section and look at the navigation bar while scrolling! Try to scroll this section and look at the navigation bar while scrolling!</p>
+</div>
+<div id="section2" class="container-fluid">
+  <h1>Section 2</h1>
+  <p>Try to scroll this section and look at the navigation bar while scrolling! Try to scroll this section and look at the navigation bar while scrolling!</p>
+  <p>Try to scroll this section and look at the navigation bar while scrolling! Try to scroll this section and look at the navigation bar while scrolling!</p>
+</div>
+<div id="section3" class="container-fluid">
+  <h1>Section 3</h1>
+  <p>Try to scroll this section and look at the navigation bar while scrolling! Try to scroll this section and look at the navigation bar while scrolling!</p>
+  <p>Try to scroll this section and look at the navigation bar while scrolling! Try to scroll this section and look at the navigation bar while scrolling!</p>
+</div>
+<div id="section41" class="container-fluid">
+  <h1>Section 4 Submenu 1</h1>
+  <p>Try to scroll this section and look at the navigation bar while scrolling! Try to scroll this section and look at the navigation bar while scrolling!</p>
+  <p>Try to scroll this section and look at the navigation bar while scrolling! Try to scroll this section and look at the navigation bar while scrolling!</p>
+</div>
+<div id="section42" class="container-fluid">
+  <h1>Section 4 Submenu 2</h1>
+  <p>Try to scroll this section and look at the navigation bar while scrolling! Try to scroll this section and look at the navigation bar while scrolling!</p>
+  <p>Try to scroll this section and look at the navigation bar while scrolling! Try to scroll this section and look at the navigation bar while scrolling!</p>
+</div>
+
+
+-->
+<!--<body id="top" data-spy="scroll" data-target=".navbar" data-offset="50">
+<div class="wrapper col11">
+    <nav class="navbar navbar-inverse navbar-fixed-top">
+  <div class="container-fluid">
+    <div class="navbar-header">
+        <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#myNavbar">
+          <span class="icon-bar"></span>
+          <span class="icon-bar"></span>
+          <span class="icon-bar"></span>
+      </button>
+      <a class="navbar-brand" href="#">WebSiteName</a>
+    </div>
+    <div>
+      <div class="collapse navbar-collapse" id="myNavbar">
+        <ul class="nav navbar-nav">
+           <li><a href="{% url 'trending' %}#general" class=active">General</a></li>
+        <li><a href="{% url 'trending' %}#business">Business</a></li>
+        <li><a href="{% url 'trending' %}#sports">Sports</a></li>
+          <li><a href="{% url 'trending' %}#entertainment">Entertainment</a></li>
+          <li><a href="{% url 'trending' %}#science-and-nature">Science & Nature</a></li>
+          <li><a href="{% url 'trending' %}#technology">Technology</a></li>
+            </ul>
+          </li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</nav>
+-->
+
+   <!-- <div class="fl_left">
+      <a href="{#% url 'index' %#}"><h2>NewsInShorts</h2></a>
+
+    </div>
+    <div id="topbar">
+    <div id="topnav">
+      <ul>
+        <li><a href="{#% url 'trending' %#}#general" class=active">General</a></li>
+        <li><a href="{#% url 'trending' %#}#business">Business</a></li>
+        <li><a href="{#% url 'trending' %#}#sports">Sports</a></li>
+          <li><a href="{#% url 'trending' %#}#entertainment">Entertainment</a></li>
+          <li><a href="{#% url 'trending' %#}#science-and-nature">Science & Nature</a></li>
+          <li><a href="{#% url 'trending' %#}#technology">Technology</a></li>
+
+      </ul>
+    </div>
+      <br class="clear" />
+  </div>
+
+-->
+  <!--  <div class="fl_right"><a href="accordion.html"><img src="home.png" alt="" /></a></div>-->
+
+
+<!-- ####################################################################################################### -->
+<!--<div class="wrapper col2">
+  <div id="topbar">
+    <div id="topnav">
+      <ul>
+        <li><a href="{% url 'trending' %}#general">General</a></li>
+        <li><a href="{% url 'trending' %}#business">Business</a></li>
+        <li><a href="{% url 'trending' %}#sports">Sports</a></li>
+          <li><a href="{% url 'trending' %}#entertainment">Entertainment</a></li>
+          <li><a href="{% url 'trending' %}#science-and-nature">Science & Nature</a></li>
+          <li><a href="{% url 'trending' %}#technology">Technology</a></li>
+        
+      </ul>
+    </div>
+      <br class="clear" />
+  </div>
+</div>-->
+<div id="general" class="wrapper col81 container-fluid">
+  <div id="hpage_latest" class="text1">
+  <h3>Latest General News</h3>
+         <ul>{% for news in businessNews %}
+            <div class="news1">
+        <li>
+
+            <a href="{{ news.url }}">
+            <img src="{{ news.urlToImage }}" alt="" />
+            </a>
+            <h5>{{ news.title }}</h5>
+            <div style="border-bottom:1px #aaa solid; height:120px; overflow:hidden;"><p style="text-align:center;">{{ news.description }}</p></div>
+            <kbd><b>{{ news.source.name }}</b></kbd>
+            <kbd style="float:right;">{{ news.publishedDate }}</kbd><br><br>
+            <p class="readmore"><a href="{{ news.url }}">Read More &raquo;</a></p>
+            <br>
+
+
+        </li>
+            </div>
+            {% endfor %}
+        </ul>
+        <h2 style="float:right"><a href="{% url 'general' %}">For More General Info>>></a></h2>
+        <br class="clear" />
+      </div>
+    </div>
+
+
+           <div id="business" class="wrapper col81 container-fluid">
+               <div id="hpage_latest" class="text1">
+            <h3>Latest Business News</h3>
+        <ul>{% for news in businessNews %}
+            <div class="news1">
+        <li>
+
+            <a href="{{ news.url }}">
+            <img src="{{ news.urlToImage }}" alt="" />
+            </a>
+            <h5>{{ news.title }}</h5>
+            <div style="border-bottom:1px #aaa solid; height:120px; overflow:hidden;"><p  style="text-align:center;">{{ news.description }}</p></div>
+            <kbd><b>{{ news.source.name }}</b></kbd>
+            <kbd style="float :right;">{{ news.publishedDate }}</kbd><br><br>
+            <p class="readmore"><a href="{{ news.url }}">Read More &raquo;</a></p>
+            <br>
+
+
+        </li>
+            </div>
+            {% endfor %}
+        </ul>
+        <h2 style="float:right"><a href="{% url 'business' %}">For More Business Info>>></a></h2>
+        <br class="clear" />
+      </div>
+    </div>
+
+<div class="wrapper col81 container-fluid">
+  <div id="hpage_latest" class="text1">
+  <h3>Latest Sports News</h3>
+        <ul>{% for news in sportNews %}
+            <div class="news1">
+        <li>
+
+            <a href="{{ news.url }}">
+            <img src="{{ news.urlToImage }}" alt="" />
+            </a>
+
+            <h5>{{ news.title }}</h5>
+           <div style="border-bottom:1px #aaa solid; height:120px; overflow:hidden;"><p  style="text-align:center;">{{ news.description }}</p></div>
+            <br>
+
+            <kbd><b>{{ news.source.name }}</b></kbd>
+            <kbd style="float:right;">{{ news.publishedDate }}</kbd>
+            <br><br>
+            <p class="readmore"><a href="{{ news.url }}">Read More &raquo;</a></p>
+        </li>
+            </div>
+            {% endfor %}
+        </ul>
+        <h2 style="float:right"><a href="{% url 'sport' %}">For More Sports Info>>></a></h2>
+        <br class="clear" />
+      </div>
+    </div>
+
+<div id="entertainment" class="wrapper col81 container-fluid ">
+  <div id="hpage_latest" class="text1">
+  <h3>Latest Entertainment News</h3>
+        <ul>{% for news in entertainmentNews %}
+            <div class="news1">
+        <li>
+
+            <a href="{{ news.url }}">
+            <img src="{{ news.urlToImage }}" alt="" />
+            </a>
+
+            <h5>{{ news.title }}</h5>
+            <div style="border-bottom:1px #aaa solid; height:120px; overflow:hidden;"><p style="text-align:center;">{{ news.description }}</p></div>
+<kbd><b>{{ news.source.name }}</b></kbd>
+            <kbd style="float:right;">{{ news.publishedDate }}</kbd><br><br>
+            <p class="readmore"><a href="{{ news.url }}">Read More &raquo;</a></p>
+            <br>
+
+
+        </li>
+            </div>
+            {% endfor %}
+        </ul>
+        <h2 style="float:right"><a href="{% url 'entertainment' %}">For More Entertainment News>>></a></h2>
+        <br class="clear" />
+      </div>
+    </div>
+
+           <div id="science-and-nature" class="wrapper col81 container-fluid ">
+  <div id="hpage_latest" >
+  <h3>Latest Science-And-Nature News</h3>
+        <ul>{% for news in scienceAndNatureNews %}
+            <div class="news1">
+        <li>
+
+           <a href="{{ news.url }}">
+            <img src="{{ news.urlToImage }}" alt="" />
+            </a>
+
+            <h5>{{ news.title }}</h5>
+            <div style="border-bottom:1px #aaa solid; height:120px; overflow:hidden;"><p style="text-align:center;">{{ news.description }}</p></div>
+<kbd><b>{{ news.source.name }}</b></kbd>
+            <kbd style="float:right;">{{ news.publishedDate }}</kbd><br><br>
+            <p class="readmore"><a href="{{ news.url }}">Read More &raquo;</a></p>
+            <br>
+
+        </li>
+            </div>
+            {% endfor %}
+        </ul>
+        <h2 style="float:right"><a href="{% url 'science-nature' %}">For More Science-And-Nature News>>></a></h2>
+        <br class="clear" />
+      </div>
+    </div>
+
+           <div id="technology" class="wrapper col81 container-fluid">
+  <div id="hpage_latest" >
+  <h3>Latest Technology News</h3>
+        <ul>{% for news in technologyNews %}
+            <div class="news1">
+        <li>
+
+           <a href="{{ news.url }}">
+            <img src="{{ news.urlToImage }}" alt="" />
+            </a>
+
+            <h5>{{ news.title }}</h5>
+           <div style="border-bottom:1px #aaa solid; height:120px; overflow:hidden;"><p style="text-align:center;">{{ news.description }}</p></div>
+<kbd><b>{{ news.source.name }}</b></kbd>
+            <kbd style="float:right;">{{ news.publishedDate }}</kbd><br><br>
+            <p class="readmore"><a href="{{ news.url }}">Read More &raquo;</a></p>
+            <br>
+
+
+        </li>
+            </div>
+            {% endfor %}
+        </ul>
+        <h2 style="float:right"><a href="{% url 'technology' %}">For More Technology News>>></a></h2>
+        <br class="clear" />
+      </div>
+    </div>
+
+
+<div class="wrapper col7">
+  <div id="copyright">
+    <p class="fl_left">Developed By </p>&nbsp&nbsp<h4>Yash</h4>&nbsp&nbsp<h4>Jatin</h4>&nbsp&nbsp<h4>Jainil</h4>
+
+    <br class="clear" />
+  </div>
+</div>
+</body>
+</html>

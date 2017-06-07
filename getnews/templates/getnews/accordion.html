@@ -1,0 +1,150 @@
+<!--
+IMAGES WERE MADE VERY QUICKLY IN PIXLR 
+HEX COLORS OF THE IMAGES
+SLIDE 1 - #B63ACE
+SLIDE 2 - #347FD0
+SLIDE 3 - #D23435
+SLIDE 4 - #37CF6A
+SLIDE 5 - #B5CF38
+-->
+<html>
+<head>
+ <meta charset="utf-8"> 
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    {% load staticfiles %}
+  <link rel="stylesheet" type="text/css"
+      href="https://fonts.googleapis.com/css?family=Tangerine|Satisfy|Inconsolata|Coming Soon|Droid+Sans|Pacifico|Amatic SC|Alegreya|Gloria Hallelujah|Lobster Two">
+    <link href="{% static 'getnews/accordion.css'%}" rel="stylesheet" type="text/css" />
+
+</head>
+<style>
+	#label1{
+	text-decoration:none;
+	background-color:#4a0b0b;
+	border-radius:5px;
+	padding:5px;  opacity:0.8;
+        height: 20px;
+	
+
+	}
+	#header{
+		font-family: 'Lobster Two';
+        font-size:120px;
+        color:#f4511e;
+		margin : 0 auto;
+		text-align: center;
+	text-shadow:5px 5px 5px #333;
+	}
+	.label{
+	font-size: 30px;
+		color :#105036;
+		margin : 0 auto;
+		text-align: center;
+		margin: 50px 0px;
+		font-weight:bold;
+		line-height: 30px;
+		font-family: 'Coming Soon';
+	text-shadow: 5px 5px 5px #333;
+	letter-spacing: 2px;
+	font-size: 50px;
+		
+	}
+	
+body {
+    margin:0;
+background-image: url('{% static "getnews/images/images.jpg"%}') ;
+		overflow-y:scroll;
+		}
+.heading{
+	margin-top : 50px;
+    position : relative;
+}
+</style>
+{% load static%}
+<body >
+<div class="wrapper col1" style="border-bottom: 8px #0fddaf solid;">
+
+    <div class="fl_left1">
+        {% if request.user.is_authenticated %}
+        <p><span style="vertical-align:middle">  Hello {{ user.username }} !!!</span><a href="{%  url 'auth_logout' %}">
+            <button class="button" style="vertical-align:middle"><span>LOGOUT</span></button></a></p>
+        {% else %}
+        <a href="{%  url 'registration_register' %}"><button class="button" style="vertical-align:middle"><span>REGISTER </span></button></a>
+        <a href="{%  url 'auth_login' %}"><button class="button1" style="vertical-align:middle"><span>LOGIN</span></button></a>
+        {% endif %}
+
+    </div>
+    <div class="fl_right">
+        <div id="search">
+      <form action="{% url 'search' %}" method="post">
+             {% csrf_token %}
+          <input type="text" value="Search News here&hellip;" name="keyword"  onfocus="this.value=(this.value=='Search News here&hellip;')? '' : this.value ;" />
+          <input type="submit" name="go" id="submit1" value="Search" />
+
+      </form>
+    </div></div>
+    <br class="clear" />
+</div>
+
+<div id="header">
+	<p class="heading">NEWS IN SHORTS</p>
+</div>
+<div class="label">READ A CATEGORY</div>
+
+<div class="accordion">
+	<ul>
+        <li>
+			<div class="caption"><a href="{% url 'trending' %}">Trending</a></div>
+			<a href="{% url 'trending' %}">
+        <img src='http://www.legalfutures.co.uk/wp-content/uploads/upward-trend-arrow.jpg'/></a>
+		</li>
+		<li>
+			<div class="caption"><a href="{% url 'general' %}">General</a></div>
+			<a href="{% url 'general' %}">
+        <img src='http://www.indiandeaf.org/Images/box-GeneralNews.jpg'/></a>
+		</li>
+
+    <li>
+			<div class="caption"><a href="{% url 'business' %}">Business</a></div>
+			<a href="{% url 'business' %}">
+        <img src='http://www.freeiconspng.com/uploads/money-icons-free-icons-in-2d--icon-search-engine--2.png'/></a>
+		</li>
+
+    <li>
+			<div class="caption"><a href="{% url 'entertainment' %}">Entertainment</a></div>
+			<a href="{% url 'entertainment' %}">
+        <img src='https://www.clipartsgram.com/image/740069883-illustration-of-folder-full-of-entertainment-and-cinema-object93031633.jpg'/></a>
+		</li>
+
+    <li>
+			<div class="caption"><a href="{% url 'sport' %}">Sports</a></div>
+			<a href="{% url 'sport' %}">
+        <img src='http://wallpaperswa.com/thumbnails/detail/20130722/women%20paintings%20multicolor%20sports%20artwork%20running%20ignite_wallpaperswa.com_49.jpg'/></a>
+		</li>
+
+    <li>
+			<div class="caption"><a href="{% url 'science-nature' %}">Science-and-nature</a></div>
+			<a href="{% url 'science-nature' %}">
+        <img src='http://markitwrite.com/wp-content/uploads/2014/06/8800589580_7c2c0a235f_z.jpg'/></a>
+		</li>
+
+    <li>
+			<div class="caption"><a href="{% url 'technology' %}">Technology</a></div>
+			<a href="{% url 'technology' %}">
+        <img src='http://kenstonlocal.org/kenston/wp-content/uploads/2014/07/technology1.jpg'/></a>
+		</li>
+	</ul>
+</div>
+<div class="label">READ A NEWSPAPER</div>
+<div class="sources-container">
+    {% for newsSource in allSource %}
+<a class="source" href="{% url 'paper' newsSource.id%}">
+<div class="logo" style="background-image:url({{ newsSource.urlsToLogos_medium }});">
+</div>
+<div id="label1">
+<code style="font-size:larger;color:#ffe710;" title="{{ newsSource.source_id }} %}">{{ newsSource.name }}</code>
+</div></a>
+    {% endfor%}
+</div></body>
+
+</html>

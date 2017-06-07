@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>{% block title %}NewsInShorts{% endblock %}</title>
+    {%  load staticfiles %}
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+    <link rel="stylesheet" type="text/css" href="https://fonts.googleapis.com/css?family=Satisfy">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+    <link rel="stylesheet" type="text/css" href="{% static 'getnews/layout.css' %}"/>
+      <link rel="stylesheet" type="text/css" href="{% static 'getnews/styele1.css' %}"/>
+
+    <style>
+        body{
+            background-image: url('{% static "getnews/images/images.jpg"%}')
+        }
+    </style>
+{% load staticfiles %}
+</head>
+<body >
+<div></div>
+<div class="col11 wrapper">
+<div class="fl_left">
+      <a href="{% url 'index' %}"><h2 class="brand" style="font-family: Satisfy">NewsInShorts  </h2></a>
+<p>All News at One Place</p>
+
+    </div>
+</div>
+</div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div>
+{% block body %}
+    </div>
+{%  endblock %}
+</body>
+</html>

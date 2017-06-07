@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<title>News In Shorts</title>
+    {% load static %}
+
+ <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+<link rel="stylesheet" type="text/css"
+      href="https://fonts.googleapis.com/css?family=Tangerine|Satisfy">
+
+<link rel="stylesheet" href="{%  static 'getnews/layout.css' %}" type="text/css" />
+ <link rel="stylesheet" href="{%  static 'getnews/style1.css' %}" type="text/css">
+ <style>
+        body {font: normal 0.9em Arial;color:#222;}
+        header {display:block; font-size:1.2em;margin-bottom:100px;}
+        header a, header span {
+            display: inline-block;
+            padding: 4px 8px;
+            margin-right: 10px;
+            border: 2px solid #000;
+            background: #DDD;
+            color: #000;
+            text-decoration: none;
+            text-align: center;
+            height: 20px;
+        }
+        p{
+            margin:0;
+        }
+        header span {background:white;}
+
+      <!--  #content1{
+          text-align: justify;
+          width:800px;
+          height:200px;
+          background-color: white;
+          text-align: left;
+          letter-spacing: 1px;
+          font-family: Arial;
+          font-size: 15px;
+          color:black;
+          margin: 0 auto;
+          overflow-y: scroll;
+
+        }-->
+
+
+  body {
+      position: relative;
+  }
+ p{
+     padding:0;
+     margin:0;
+ }
+  </style>
+</head>
+<body style= "background-image: url('{% static "getnews/images/images.jpg"%}' );" >
+<div class="col11 wrapper">
+<div class="fl_left" >
+      <a href="{% url 'index' %}"><h6 style="font-family: 'Satisfy'">NewsInShorts</h6></a>
+      <h4>All News at One Place</h4>
+    </div>
+    <div id="topbar">
+    <div id="topnav">
+
+        <div class="fl_right">
+         <div id="search">
+      <form action="{% url 'search' %}" method="post">
+             {% csrf_token %}
+          <input type="text" value="Search News here&hellip;" name="keyword"  onfocus="this.value=(this.value=='Search News here&hellip;')? '' : this.value ;" />
+          <input type="submit" name="go" id="submit1" value="Search" />
+
+      </form>
+    </div></div>
+    </div>
+      <br class="clear" />
+  </div>
+
+</div>
+<div id="general" class="wrapper col812 container-fluid">
+  <div id="hpage_latest" class="text1">
+  <h3>News Related To : {{ keyword }}</h3>
+         <ul>{% for news in keywordNews %}
+             <li>
+            <div class="news1">
+
+
+            <a href="{{ news.url }}">
+            <img src="{{ news.urlToImage }}" alt="" />
+            </a>
+            <h5>{{ news.title }}</h5>
+            <div style="border-bottom:1px #aaa solid; height:120px; overflow:hidden;"><p style="text-align:center;">{{ news.description }}</p></div>
+            <kbd><b>{{ news.source.name }}</b></kbd>
+            <kbd style="float:right;">{{ news.publishedDate }}</kbd><br><br>
+            <p class="readmore"><a href="{{ news.url }}">Read More &raquo;</a></p>
+            <br>
+            </div>
+             </li>
+            {% endfor %}
+        </ul>
+
+        <br class="clear" />
+      </div>
+    </div>
+</body>
+</html>

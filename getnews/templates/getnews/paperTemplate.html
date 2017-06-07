@@ -1,0 +1,176 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<!--
+Template Name: Newserific
+Author: <a href="http://www.os-templates.com/">OS Templates</a>
+Author URI: http://www.os-templates.com/
+Licence: Free to use under our free template licence terms
+Licence URI: http://www.os-templates.com/template-terms
+-->
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<title>NewsInShorts</title>
+       {% load static%}
+<link rel="stylesheet" type="text/css" href="{%  static 'getnews/layout.css' %} "/>
+<meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1" />
+<link rel="stylesheet" type="text/css"
+      href="https://fonts.googleapis.com/css?family=Tangerine|Satisfy"/>
+ <link rel="stylesheet" href="{%  static 'getnews/style1.css' %}" type="text/css"/>
+ <style>
+        body {font: normal 0.9em Arial;color:#222;}
+        header {display:block; font-size:1.2em;margin-bottom:100px;}
+        header a, header span {
+            display: inline-block;
+            padding: 4px 8px;
+            margin-right: 10px;
+            border: 2px solid #000;
+            background: #DDD;
+            color: #000;
+            text-decoration: none;
+            text-align: center;
+            height: 20px;
+        }
+        h4{
+            display:inline;
+        }
+        p{
+            margin:0;
+        }
+        header span {background:white;}
+    </style>
+</head>
+{% load staticfiles %}
+<body id="top" style="background-image: url('{% static "getnews/images/images.jpg"%}' );">
+<div class="wrapper col1" style="border-bottom: 8px #0fddaf solid;">
+  <div id="header">
+    <div class="fl_left1" style="font-family: 'Satisfy'">
+      <a href="{% url 'index' %}"><h1>NewsInShorts</h1></a>
+      <p>All News at One Place</p>
+    </div>
+      {% if request.user.is_authenticated %}
+        <a href="{%  url 'auth_logout' %}">
+            <button class="button" style="vertical-align:middle;float:right;"><span>LOGOUT</span></button></a>
+      {% endif %}
+    <div class="fl_right">
+         <div id="search">
+      <form action="{% url 'search' %}" method="post">
+             {% csrf_token %}
+          <input type="text" value="Search News here&hellip;" name="keyword"  onfocus="this.value=(this.value=='Search News here&hellip;')? '' : this.value ;" />
+          <input type="submit" name="go" id="submit1" value="Search" />
+
+      </form>
+    </div></div>
+
+    <br class="clear" />
+  </div>
+</div>
+<!-- ####################################################################################################### -->
+
+<!-- ####################################################################################################### -->
+<div class="wrapper col4">
+  <div id="container">
+    <div id="content">
+      <!--<div id="featured_post"><img src="images/demo/620x270.gif" alt="" />-->
+       <div style="width:900px;margin:0px auto;">
+    <div id="captioned-gallery">
+  <figure class="slider">
+    <figure id="1">
+      <a href="{{ paperNews.0.url }}">
+            <img src="{{ paperNews.0.urlToImage }}" alt="" />
+            </a>
+      <figcaption>{{ paperNews.0.title }}</figcaption>
+    </figure>
+    <figure id="2">
+      <a href="{{ paperNews.1.url }}">
+            <img src="{{ paperNews.1.urlToImage }}" alt="" />
+            </a>
+      <figcaption>{{ paperNews.1.title }}</figcaption>
+    </figure>
+    <figure id="3">
+      <a href="{{ paperNews.2.url }}">
+            <img src="{{ paperNews.2.urlToImage }}" alt="" />
+            </a>
+      <figcaption>{{ paperNews.2.title }}</figcaption>
+    </figure>
+    <figure id="4">
+      <a href="{{ paperNews.3.url }}">
+            <img src="{{ paperNews.3.urlToImage }}" alt="" />
+            </a>
+      <figcaption>{{ paperNews.3.title }}</figcaption>
+    </figure>
+    <figure id="5">
+      <a href="{{ paperNews.4.url }}">
+            <img src="{{ paperNews.4.urlToImage }}" alt="" />
+            </a>
+      <figcaption>{{ paperNews.4.title }}</figcaption>
+    </figure>
+  </figure>
+</div>
+
+
+
+        </div>
+        <div style="clear:both;"></div>
+    </div>
+
+      </div>
+      <div id="hpage_latest">
+        <ul>
+
+            {% for news in paperNewsTop %}
+        <li><div class="news1">
+        <a href="{{ news.url }}">
+            <img src="{{ news.urlToImage }}" alt="" />
+            </a>
+            <h5>{{ news.title }}</h5>
+            <p style="text-align:center;border-bottom:1px #aaa solid;height:145px;overflow:hidden;margin-bottom:0">{{ news.description }}</p>
+            <kbd><b>{{ news.source.name }}</b></kbd>
+            <kbd style="float:right;">{{ news.publishedDate }}</kbd><br>
+            <p class="readmore"><a href="{{ news.url }}">Read More &raquo;</a></p>
+
+
+        </div>
+                </li>
+            {% endfor %}
+        </ul>
+        <br class="clear" />
+      </div>
+
+</div>
+<div id="a1" class="wrapper col8">
+  <div id="hpage_latest1">
+  <h3>All News</h3>
+        <ul>{% for news in paperNews %}
+
+            <div class="allnews1">
+        <li>
+            <div class="image">
+            <img src="{{ news.urlToImage }}" alt="" />
+               </div>
+            <div class="description">
+            <h2>{{ news.title }}</h2>
+            <p>{{ news.description }}</p><br>
+            <kbd><b>{{ news.source.name }}</b></kbd>
+            <kbd style="float:right;">{{ news.publishedDate }}</kbd>
+            <p class="readmore"><a href="{{ news.url }}">Read More &raquo;</a></p>
+            </div>
+        </li>
+            </div>
+            {% endfor %}
+        </ul>
+
+        <br class="clear" />
+  <br>
+<br><br><br><br>
+      </div>
+    </div>
+
+
+<div class="wrapper col7">
+  <div id="copyright">
+
+ <p class="fl_left">Developed By </p>&nbsp&nbsp<h4 >Yash</h4>&nbsp&nbsp<h4>Jatin</h4>&nbsp&nbsp<h4>Jainil</h4>
+    <br class="clear" />
+  </div>
+</div>
+</body>
+</html>
